@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/normal">
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="400px"
             android:layout_height="wrap_content"
             android:padding="18px"
