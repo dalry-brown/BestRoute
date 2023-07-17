@@ -36,7 +36,7 @@ public class RoutesDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String queryStringLocation = "CREATE TABLE " + LOCATION_TABLE + "(" + COLUMN_LOCATION_ID + " INTEGER PRIMARY KEY, " + COLUMN_LOCATION_1 + " TEXT NOT NULL, " + COLUMN_LOCATION_2 + " TEXT NOT NULL)";
-        String queryStringRoutes = "CREATE TABLE " + ROUTES_TABLE + "(" + COLUMN_ROUTE_ID + " INTEGER PRIMARY KEY, " + COLUMN_LOC_ID + " INTEGER NOT NULL, " + COLUMN_LM_1 + " TEXT NOT NULL, " + COLUMN_LM_2 + " TEXT NOT NULL, " + COLUMN_LM_3 + " TEXT NOT NULL, " + COLUMN_LM_4 + " TEXT NOT NULL, " + COLUMN_DISTANCE + " INT NOT NULL, " + COLUMN_DURATION + " INT NOT NULL)";
+        String queryStringRoutes = "CREATE TABLE " + ROUTES_TABLE + "(" + COLUMN_ROUTE_ID + " INTEGER PRIMARY KEY, " + COLUMN_LOC_ID + " INTEGER NOT NULL, " + COLUMN_LM_1 + " TEXT NOT NULL, " + COLUMN_LM_2 + " TEXT NOT NULL, " + COLUMN_LM_3 + " TEXT NOT NULL, " + COLUMN_LM_4 + " TEXT NOT NULL, " + COLUMN_DISTANCE + " INTEGER  NOT NULL, " + COLUMN_DURATION + " INTEGER NOT NULL)";
         db.execSQL(queryStringRoutes);
         db.execSQL(queryStringLocation);
     }
@@ -87,9 +87,62 @@ public class RoutesDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<Locations> getLocation() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + LOCATION_TABLE;
+        ArrayList<Locations> locationArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int locationId = cursor.getInt(0);
+                String location1 = cursor.getString(1);
+                String location2 = cursor.getString(2);
+
+                Locations locations = new Locations(locationId, location1, location2);
+                locationArrayList.add(locations);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return locationArrayList;
+    }
+
     public ArrayList<Routes> getPentEvandy() {
         db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 1";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getMathdeptGreathall() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 2";
         ArrayList<Routes> routesArrayList = new ArrayList<>();
         Cursor cursor = db.rawQuery(queryString, null);
 

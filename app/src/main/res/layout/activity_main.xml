@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/light"
-            android:id="@+id/location1"
+            android:id="@+id/spinner1"
             />
         </com.google.android.material.card.MaterialCardView>
 
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/light"
-            android:id="@+id/location2"
+            android:id="@+id/spinner2"
             />
         </com.google.android.material.card.MaterialCardView>
 

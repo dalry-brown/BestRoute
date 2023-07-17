@@ -3,6 +3,7 @@
     <style name="Base.Theme.BestRoute" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/normal</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Theme.BestRoute" parent="Base.Theme.BestRoute" />

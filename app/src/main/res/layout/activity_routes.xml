@@ -113,6 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:id="@+id/route1_direction"
                     android:textSize="22sp"
                     android:text="NNB ---> Political science ---> Math dept. ---> Pent"/>
@@ -216,6 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:text="NNB ---> Political science ---> Math dept. ---> Pent"
                     android:textColor="@color/darker"
                     android:id="@+id/route2_direction"
@@ -319,6 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:textSize="22sp"
                     android:id="@+id/route3_direction"
                     android:text="NNB ---> Political science ---> Math dept. ---> Pent"/>
@@ -422,6 +425,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:id="@+id/route4_direction"
+                    android:textAlignment="center"
                     android:textSize="22sp"
                     android:text="NNB ---> Political science ---> Math dept. ---> Pent"/>
                 <LinearLayout
