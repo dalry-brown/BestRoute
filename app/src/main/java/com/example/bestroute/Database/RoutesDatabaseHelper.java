@@ -111,7 +111,7 @@ public class RoutesDatabaseHelper extends SQLiteOpenHelper {
         return locationArrayList;
     }
 
-    public ArrayList<Routes> getPentEvandy() {
+    public ArrayList<Routes> getLawBalme() {
         db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 1";
         ArrayList<Routes> routesArrayList = new ArrayList<>();
@@ -140,9 +140,212 @@ public class RoutesDatabaseHelper extends SQLiteOpenHelper {
         return routesArrayList;
     }
 
-    public ArrayList<Routes> getMathdeptGreathall() {
+    public ArrayList<Routes> getLawVolta() {
         db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 2";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getLawBusiness() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 3";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getEngBus() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 4";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getEngBalme() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 5";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getEngVolta() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 6";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getNurseBus() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 7";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getNurseBalme() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 8";
+        ArrayList<Routes> routesArrayList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int routeId = cursor.getInt(0);
+                int locationId = cursor.getInt(1);
+                String lm1 = cursor.getString(2);
+                String lm2 = cursor.getString(3);
+                String lm3 = cursor.getString(4);
+                String lm4 = cursor.getString(5);
+                int distance = cursor.getInt(6);
+                int duration = cursor.getInt(7);
+
+                Routes routes = new Routes(routeId, locationId, lm1, lm2, lm3, lm4, distance, duration);
+                routesArrayList.add(routes);
+            } while (cursor.moveToNext());
+        } else {
+            //Do nothing
+        }
+
+        cursor.close();
+        db.close();
+        return routesArrayList;
+    }
+
+    public ArrayList<Routes> getNurseVolta() {
+        db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + ROUTES_TABLE + " WHERE " + COLUMN_LOC_ID + " = 9";
         ArrayList<Routes> routesArrayList = new ArrayList<>();
         Cursor cursor = db.rawQuery(queryString, null);
 
