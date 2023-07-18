@@ -30,15 +30,18 @@
         android:padding="10px"
         android:layout_marginTop="20px"
         android:layout_marginBottom="15dp">
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="32sp"
-            android:text="NNB"
+            android:text="Nursing School"
             android:id="@+id/locationheader1"
             android:textColor="@color/darker"
             android:src="@mipmap/best_route"/>
@@ -56,9 +59,10 @@
             android:textSize="32sp"
             android:id="@+id/locationheader2"
             android:textColor="@color/darker"
-            android:text="Pent"
+            android:text="Business School"
             android:src="@mipmap/best_route"/>
         </LinearLayout>
+    </HorizontalScrollView>
     </LinearLayout>
 
     <TextView

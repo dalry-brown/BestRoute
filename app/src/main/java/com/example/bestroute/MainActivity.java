@@ -9,15 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.bestroute.Database.RoutesDatabaseHelper;
 import com.example.bestroute.Models.Locations;
+import com.example.bestroute.Models.RouteFinder;
 import com.example.bestroute.Models.Routes;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    RouteFinder vam;
     RoutesDatabaseHelper routesDatabaseHelper = new RoutesDatabaseHelper(MainActivity.this);
     ArrayList<Routes> routesArrayList = new ArrayList<>();
     ArrayList<Locations> locationArrayList = new ArrayList<>();
@@ -177,6 +180,34 @@ public class MainActivity extends AppCompatActivity {
                     routesArrayList = routesDatabaseHelper.getNurseBus();
                 }
 
+                ArrayList<Integer> distances = new ArrayList<>();
+                for (int i = 0; i < routesArrayList.size(); i++) {
+                    distances.add(routesArrayList.get(i).getDistance());
+                }
+//                distances.add(1);
+//                distances.add(2);
+//                distances.add(3);
+
+                // Time taken for each route in minutes
+                ArrayList<Double> times = new ArrayList<>();
+                times.add(5.0);
+                times.add(3.0);
+                times.add(1.0);
+
+                // Additional time due to traffic for each route in minutes
+                ArrayList<Double> trafficTimes = new ArrayList<>();
+                trafficTimes.add(1.0);
+                trafficTimes.add(2.0);
+                trafficTimes.add(3.0);
+
+                // Vogel's Approximation Method
+                int bestRouteIndex = vogelsApproximation(distances);
+
+                // Calculate the time of arrival for the best route
+                double totalTime = times.get(bestRouteIndex) + trafficTimes.get(bestRouteIndex);
+
+                int j = vogelsApproximation(distances);
+
                 //Toast.makeText(MainActivity.this, value1 + " " + value2, Toast.LENGTH_LONG).show();
                 Context context =   MainActivity.this;
                 Intent i = new Intent(context, com.example.bestroute.Routes.class);
@@ -185,18 +216,31 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("route1direction", routesArrayList.get(0).getLm1() + " ---> " +routesArrayList.get(0).getLm2() + " ---> " +routesArrayList.get(0).getLm3() + " ---> " +routesArrayList.get(0).getLm4());
                 i.putExtra("route2direction", routesArrayList.get(1).getLm1() + " ---> " +routesArrayList.get(1).getLm2() + " ---> " +routesArrayList.get(1).getLm3() + " ---> " +routesArrayList.get(1).getLm4());
                 i.putExtra("route3direction", routesArrayList.get(2).getLm1() + " ---> " +routesArrayList.get(2).getLm2() + " ---> " +routesArrayList.get(2).getLm3() + " ---> " +routesArrayList.get(2).getLm4());
-                i.putExtra("route4direction", routesArrayList.get(2).getLm1() + " ---> " +routesArrayList.get(2).getLm2() + " ---> " +routesArrayList.get(2).getLm3() + " ---> " +routesArrayList.get(2).getLm4());
+                i.putExtra("route4direction", routesArrayList.get(j).getLm1() + " ---> " +routesArrayList.get(j).getLm2() + " ---> " +routesArrayList.get(j).getLm3() + " ---> " +routesArrayList.get(j).getLm4());
                 i.putExtra("route1distance", routesArrayList.get(0).getDistance());
                 i.putExtra("route2distance", routesArrayList.get(1).getDistance());
                 i.putExtra("route3distance", routesArrayList.get(2).getDistance());
-                i.putExtra("route4distance", routesArrayList.get(2).getDistance());
+                i.putExtra("route4distance", routesArrayList.get(j).getDistance());
                 i.putExtra("route1duration", routesArrayList.get(0).getDuration());
                 i.putExtra("route2duration", routesArrayList.get(1).getDuration());
                 i.putExtra("route3duration", routesArrayList.get(2).getDuration());
-                i.putExtra("route4duration", routesArrayList.get(2).getDuration());
+                i.putExtra("route4duration", routesArrayList.get(j).getDuration());
                 context.startActivity(i);
             }
         });
+    }
+    private static int vogelsApproximation(ArrayList<Integer> distances) {
+        int bestRouteIndex = 0;
+        double minDistance = distances.get(0);
 
+        // Find the route with the shortest distance using Vogel's Approximation Method
+        for (int i = 1; i < distances.size(); i++) {
+            if (distances.get(i) < minDistance) {
+                minDistance = distances.get(i);
+                bestRouteIndex = i;
+            }
+        }
+
+        return bestRouteIndex;
     }
 }
